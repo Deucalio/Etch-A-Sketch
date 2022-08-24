@@ -1,0 +1,7 @@
+:root{
+    --cols: 1;
+}
+
+.gridCol {
+    grid-template-columns: repeat(var(--cols), minmax(0,1fr)) !important ; 
+}
