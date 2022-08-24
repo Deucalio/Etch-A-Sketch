@@ -46,6 +46,12 @@
 </body>
 
 <script>
+    const RandomColor = () => {
+        return ("#" +
+            Math.floor(Math.random() * 16777215).toString(16));
+    }
+
+
     const Userinput = document.querySelector("input")
     const box = document.querySelector("#box")
     const Gridsize = document.querySelector("#size")
@@ -53,27 +59,38 @@
 
 
     Userinput.addEventListener('change', () => {
-        box.innerHTML = ""
+                box.innerHTML = ""
 
-        let UserVal = Number(Userinput.value);
-        r.style.setProperty('--cols', `${UserVal}`)
-        box.classList.add("gridCol")
-
-
-        for (let i = 0; i < UserVal ** 2; i++) {
-            let item = document.createElement("div")
-            item.classList.add("border-slate-900")
-            item.classList.add("border-l-2")
-            item.classList.add("border-t-2")
+                let UserVal = Number(Userinput.value);
+                r.style.setProperty('--cols', `${UserVal}`)
+                box.classList.add("gridCol")
 
 
-            box.appendChild(item)
-        }
-    })
+                for (let i = 0; i < UserVal ** 2; i++) {
+                    let item = document.createElement("div")
+                    item.classList.add("border-slate-900")
+                    item.classList.add("border-l-2")
+                    item.classList.add("border-t-2")
+                    item.classList.add("item")
 
-    Userinput.addEventListener('mousemove', () => {
-        Gridsize.textContent = `Grid Size: ${Userinput.value} x ${Userinput.value}`
-    })
+
+
+                    box.appendChild(item)
+                    }
+                    const items = document.querySelectorAll(".item")
+                    items.forEach(item => item.addEventListener("click", () => {
+                        item.style.backgroundColor = RandomColor();
+                    }))
+
+                    items.forEach(item => item.addEventListener("mouseenter", () => {
+                        item.style.backgroundColor = RandomColor();
+                    }))
+                    
+                })
+
+            Userinput.addEventListener('mousemove', () => {
+                Gridsize.textContent = `Grid Size: ${Userinput.value} x ${Userinput.value}`
+            })
 </script>
 
 </html>
